@@ -1,4 +1,4 @@
-package com.example.ejricahuerta.snakegame_er;
+package com.map524s1a.snakegame_er;
 
 import org.junit.Test;
 

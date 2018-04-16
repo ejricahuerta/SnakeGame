@@ -1,4 +1,4 @@
-package com.example.ejricahuerta.snakegame_er;
+package com.map524s1a.snakegame_er;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.ejricahuerta.snakegame_er", appContext.getPackageName());
+        assertEquals("com.map524s1a.snakegame_er", appContext.getPackageName());
     }
 }

@@ -1,13 +1,12 @@
-package com.example.ejricahuerta.snakegame_er;
+package com.map524s1a.snakegame_er;
 
 import android.app.Activity;
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 
 public class MainActivity extends Activity {
-    SnakeView view;
+    SnakeGameEngine view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,14 +14,16 @@ public class MainActivity extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Point point = new Point();
         display.getSize(point);
-        view = new SnakeView(this, point);
+        view = new SnakeGameEngine(this, point);
         setContentView(view);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         view.resume();
     }
+
     @Override
     protected void onPause() {
         super.onPause();

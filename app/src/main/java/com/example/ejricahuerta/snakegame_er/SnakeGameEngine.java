@@ -1,4 +1,4 @@
-package com.example.ejricahuerta.snakegame_er;
+package com.map524s1a.snakegame_er;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,7 +15,7 @@ import java.util.Random;
  * Created by ejricahuerta on 4/15/2018.
  */
 
-public class SnakeView extends SurfaceView implements Runnable {
+public class SnakeGameEngine extends SurfaceView implements Runnable {
 
 
     private Thread _Thread = null;
@@ -26,7 +26,9 @@ public class SnakeView extends SurfaceView implements Runnable {
     private Paint _snake_Paint;
     private Paint _bg_Paint;
     private Context _context;
+
     public enum Direction {UP, RIGHT, DOWN, LEFT}
+
     private Direction _Direction = Direction.RIGHT;
     private int _ScreenWidth;
     private int _ScreenHeight;
@@ -43,7 +45,7 @@ public class SnakeView extends SurfaceView implements Runnable {
     private final int NU_BLOCKS_WIDE = 40;
     private int _NumBlocksHigh = 0;
 
-    public SnakeView(Context context, Point point){
+    public SnakeGameEngine(Context context, Point point) {
         super(context);
         _context = context;
         _ScreenWidth = point.x;
@@ -68,17 +70,20 @@ public class SnakeView extends SurfaceView implements Runnable {
         _Score = 0;
         _NextFrameTime = System.currentTimeMillis();
     }
+
     public void SpawnFood() {
         Random random = new Random();
         _FoodX = random.nextInt(NU_BLOCKS_WIDE - 1) + 1;
         _FoodY = random.nextInt(_NumBlocksHigh - 1) + 1;
     }
-    private void eatMouse(){
+
+    private void eatMouse() {
         _SnakeLength++;
         SpawnFood();
         _Score = _Score + 1;
     }
-    private void moveSnake(){
+
+    private void moveSnake() {
 
         for (int i = _SnakeLength; i > 0; i--) {
             _SnakeXs[i] = _SnakeXs[i - 1];
@@ -102,7 +107,8 @@ public class SnakeView extends SurfaceView implements Runnable {
                 break;
         }
     }
-    private boolean IsDead(){
+
+    private boolean IsDead() {
         boolean dead = false;
 
         if (_SnakeXs[0] == -1) dead = true;
@@ -129,6 +135,7 @@ public class SnakeView extends SurfaceView implements Runnable {
             startGame();
         }
     }
+
     public void pause() {
         _Playing = false;
         try {
@@ -148,12 +155,12 @@ public class SnakeView extends SurfaceView implements Runnable {
         if (_Holder.getSurface().isValid()) {
             _Canvas = _Holder.lockCanvas();
 
-             _Canvas.drawColor(getResources().getColor(R.color.bg_color, _context.getTheme()));
+            _Canvas.drawColor(getResources().getColor(R.color.bg_color, _context.getTheme()));
             _snake_Paint.setColor(getResources().getColor(R.color.snake_color, _context.getTheme()));
             _bg_Paint.setColor(getResources().getColor(R.color.bg_color, _context.getTheme()));
             _food_Paint.setColor(getResources().getColor(R.color.food_color, _context.getTheme()));
             _food_Paint.setTextSize(100);
-            _Canvas.drawText("Score:" + _Score, 100, 100,  _food_Paint);
+            _Canvas.drawText("Score:" + _Score, 100, 100, _food_Paint);
 
             for (int i = 0; i < _SnakeLength; i++) {
                 _Canvas.drawRect(_SnakeXs[i] * _BlockSize,
@@ -172,10 +179,11 @@ public class SnakeView extends SurfaceView implements Runnable {
             _Holder.unlockCanvasAndPost(_Canvas);
         }
     }
+
     public boolean checkForUpdate() {
 
-        if(_NextFrameTime <= System.currentTimeMillis()){
-            _NextFrameTime =System.currentTimeMillis() + MILLIS_IN_A_SECOND / FPS;
+        if (_NextFrameTime <= System.currentTimeMillis()) {
+            _NextFrameTime = System.currentTimeMillis() + MILLIS_IN_A_SECOND / FPS;
             return true;
         }
         return false;
@@ -184,7 +192,7 @@ public class SnakeView extends SurfaceView implements Runnable {
     @Override
     public void run() {
         while (_Playing) {
-            if(checkForUpdate()) {
+            if (checkForUpdate()) {
                 updateGame();
                 drawGame();
             }
@@ -196,7 +204,7 @@ public class SnakeView extends SurfaceView implements Runnable {
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_UP:
                 if (motionEvent.getX() >= _ScreenWidth / 2) {
-                    switch(_Direction){
+                    switch (_Direction) {
                         case UP:
                             _Direction = Direction.RIGHT;
                             break;
@@ -211,7 +219,7 @@ public class SnakeView extends SurfaceView implements Runnable {
                             break;
                     }
                 } else {
-                    switch(_Direction){
+                    switch (_Direction) {
                         case UP:
                             _Direction = Direction.LEFT;
                             break;

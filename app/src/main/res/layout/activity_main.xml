@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="com.example.ejricahuerta.snakegame_er.MainActivity">
+    tools:context="com.map524s1a.snakegame_er.MainActivity">
 
 </LinearLayout>
