@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="food_color">#FFFFAE</color>
+    <color name="bg_color">#7A9F35</color>
+    <color name="snake_color">#AA6D39</color>
+</resources>

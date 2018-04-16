@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SnakeGame_ER</string>
+    <string name="score">Score: </string>
+</resources>
